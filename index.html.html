@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professor Muthu Ramachandran - Publications</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1B4F72;
+            --secondary: #2874A6;
+            --accent: #5DADE2;
+            --light-bg: #EBF5FB;
+            --text: #2C3E50;
+            --border: #BDC3C7;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .credentials {
+            margin-top: 15px;
+            font-size: 0.95em;
+            opacity: 0.85;
+        }
+        
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2em;
+            font-weight: 700;
+        }
+        
+        .stat-label {
+            font-size: 0.85em;
+            opacity: 0.8;
+        }
+        
+        .filter-bar {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .filter-bar h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            border: 2px solid var(--border);
+            background: white;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9em;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .section {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .section h2 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .section h2 span {
+            font-size: 0.6em;
+            background: var(--light-bg);
+            padding: 5px 12px;
+            border-radius: 15px;
+            color: var(--secondary);
+        }
+        
+        .publication {
+            padding: 15px;
+            border-left: 4px solid var(--accent);
+            margin-bottom: 15px;
+            background: var(--light-bg);
+            border-radius: 0 8px 8px 0;
+            transition: transform 0.2s;
+        }
+        
+        .publication:hover {
+            transform: translateX(5px);
+        }
+        
+        .publication.new::before {
+            content: "NEW";
+            background: #e74c3c;
+            color: white;
+            font-size: 0.7em;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 10px;
+            font-weight: 600;
+        }
+        
+        .pub-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .pub-authors {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .pub-venue {
+            font-size: 0.85em;
+            color: var(--secondary);
+            font-style: italic;
+        }
+        
+        .pub-year {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            margin-top: 8px;
+        }
+        
+        .pub-type {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            margin-top: 8px;
+            margin-left: 5px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        /* Instructions for developers */
+        .dev-instructions {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: none; /* Hidden by default - remove this line to show */
+        }
+        
+        .dev-instructions h3 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        
+        .dev-instructions code {
+            background: #f8f9fa;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            .stats-bar {
+                gap: 20px;
+            }
+            .stat-number {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Professor Muthu Ramachandran</h1>
+            <p>Distinguished Visiting Professor | Research Consultant | International Academic Leader</p>
+            <div class="credentials">PhD, FBCS, SFHEA, SMIEEE, SMACM</div>
+            <div class="stats-bar">
+                <div class="stat">
+                    <div class="stat-number" id="book-count">16</div>
+                    <div class="stat-label">Books</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" id="journal-count">52+</div>
+                    <div class="stat-label">Journals</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" id="chapter-count">47</div>
+                    <div class="stat-label">Book Chapters</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" id="conf-count">100+</div>
+                    <div class="stat-label">Conferences</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Developer Instructions - Uncomment to show -->
+        <!--
+        <div class="dev-instructions" style="display:block;">
+            <h3>📝 How to Add New Publications</h3>
+            <p>Simply add a new object to the appropriate array in the <code>publications</code> object below:</p>
+            <ol>
+                <li>Find the <code>&lt;script&gt;</code> section at the bottom of this file</li>
+                <li>Locate the array for your publication type (books, journals, chapters, or conferences)</li>
+                <li>Add a new entry following the format shown</li>
+                <li>Add <code>isNew: true</code> to highlight recent additions</li>
+            </ol>
+        </div>
+        -->
+
+        <div class="filter-bar">
+            <h3>Filter Publications</h3>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Publications</button>
+                <button class="filter-btn" data-filter="book">Books</button>
+                <button class="filter-btn" data-filter="journal">Journals</button>
+                <button class="filter-btn" data-filter="chapter">Book Chapters</button>
+                <button class="filter-btn" data-filter="conference">Conferences</button>
+                <button class="filter-btn" data-filter="2025">2025</button>
+                <button class="filter-btn" data-filter="2024">2024</button>
+                <button class="filter-btn" data-filter="2023">2023</button>
+            </div>
+        </div>
+
+        <div id="publications-container">
+            <!-- Publications will be dynamically inserted here -->
+        </div>
+
+        <footer>
+            <p>© 2025 Professor Muthu Ramachandran | University of South Africa & Forti5 Tech Ltd</p>
+            <p>Last updated: <span id="last-updated"></span></p>
+        </footer>
+    </div>
+
+    <script>
+    // ============================================================
+    // PUBLICATIONS DATA - EASY TO UPDATE!
+    // ============================================================
+    // To add a new publication:
+    // 1. Find the appropriate category (books, journals, chapters, conferences)
+    // 2. Add a new object with: title, authors, venue, year
+    // 3. Add isNew: true to highlight it as new
+    // ============================================================
+    
+    const publications = {
+        
+        // ==================== BOOKS ====================
+        books: [
+            // --- ADD NEW BOOKS HERE ---
+            {
+                title: "Engineering AI Ethics by Design",
+                authors: "Ramachandran, M.",
+                venue: "Springer [In Preparation]",
+                year: 2025,
+                isNew: true
+            },
+            {
+                title: "Engineering Ethics of Blockchain by Design",
+                authors: "Ramachandran, M.",
+                venue: "Springer [In Preparation]",
+                year: 2025,
+                isNew: true
+            },
+            {
+                title: "Blockchain Software Engineering for Healthcare Applications",
+                authors: "Ramachandran, M.",
+                venue: "Springer [In Production]",
+                year: 2025,
+                isNew: true
+            },
+            {
+                title: "The Convergence of AI and 6G Communication Networks",
+                authors: "Ramachandran, M. et al.",
+                venue: "Elsevier",
+                year: 2024
+            },
+            {
+                title: "Novel AI and Data Science Advancements for COVID-19",
+                authors: "Chang, V. & Ramachandran, M.",
+                venue: "Elsevier",
+                year: 2022
+            },
+            {
+                title: "Software Engineering in the Era of Cloud Computing",
+                authors: "Ramachandran, M. & Mahmood, Z.",
+                venue: "Springer",
+                year: 2020
+            },
+            {
+                title: "Enterprise Security",
+                authors: "Ramachandran, M.",
+                venue: "Springer",
+                year: 2017
+            },
+            {
+                title: "Software Security Engineering: Design and Applications",
+                authors: "Ramachandran, M.",
+                venue: "Nova Science Publishers",
+                year: 2012
+            },
+            {
+                title: "Software Components: Guidelines and Applications",
+                authors: "Ramachandran, M.",
+                venue: "Nova Science Publishers",
+                year: 2008
+            }
+        ],
+        
+        // ==================== JOURNAL ARTICLES ====================
+        journals: [
+            // --- ADD NEW JOURNALS HERE ---
+            {
+                title: "Ethics of Blockchain by Design for Healthcare Innovation",
+                authors: "Ramachandran, M.",
+                venue: "Blockchain in Healthcare Today (BHTY)",
+                year: 2025,
+                isNew: true
+            },
+            {
+                title: "IoT Security Challenges and Solutions Framework",
+                authors: "Ramachandran, M. et al.",
+                venue: "IEEE IoT Journal",
+                year: 2024,
+                isNew: true
+            },
+            {
+                title: "AI and Blockchain Framework for Healthcare Applications",
+                authors: "Ramachandran, M.",
+                venue: "Facta Universitatis",
+                year: 2024,
+                isNew: true
+            },
+            {
+                title: "S3EF-HBCAs: Secure Software Engineering Framework for Healthcare Blockchain",
+                authors: "Ramachandran, M. et al.",
+                venue: "Blockchain in Healthcare Today (BHTY)",
+                year: 2023
+            },
+            {
+                title: "Quality Framework for XAI and ML Applications",
+                authors: "Ramachandran, M.",
+                venue: "IET Press",
+                year: 2023
+            },
+            {
+                title: "Towards Achieving Quality in AI Applications",
+                authors: "Ramachandran, M.",
+                venue: "Patterns, Elsevier",
+                year: 2022
+            },
+            {
+                title: "Cloud Data Security with CCAF",
+                authors: "Chang, V. & Ramachandran, M.",
+                venue: "IEEE Transactions on Service Computing [Most Popular Article #1]",
+                year: 2016
+            },
+            {
+                title: "Software Security Requirements Engineering as Cloud Service",
+                authors: "Ramachandran, M.",
+                venue: "International Journal of Information Management",
+                year: 2016
+            },
+            {
+                title: "A Resiliency Framework for Enterprise Cloud",
+                authors: "Chang, V. et al.",
+                venue: "International Journal of Information Management",
+                year: 2015
+            },
+            {
+                title: "Efficient Location Privacy Algorithm for IoT",
+                authors: "Sun, G. et al.",
+                venue: "Elsevier Journal of Network & Computer Applications",
+                year: 2016
+            }
+        ],
+        
+        // ==================== BOOK CHAPTERS ====================
+        chapters: [
+            // --- ADD NEW CHAPTERS HERE ---
+            {
+                title: "AI Ethics by Design Methodology",
+                authors: "Ramachandran, M.",
+                venue: "Engineering AI Ethics by Design, Springer",
+                year: 2025,
+                isNew: true
+            },
+            {
+                title: "Blockchain Ethics Framework for Healthcare",
+                authors: "Ramachandran, M.",
+                venue: "Blockchain for Healthcare, Springer",
+                year: 2024,
+                isNew: true
+            },
+            {
+                title: "Cloud Security Architecture Patterns",
+                authors: "Ramachandran, M.",
+                venue: "Cloud Computing Handbook, Springer",
+                year: 2023
+            },
+            {
+                title: "Software Engineering for IoT Systems",
+                authors: "Ramachandran, M.",
+                venue: "IoT Handbook, Elsevier",
+                year: 2022
+            },
+            {
+                title: "Big Data Quality and Governance",
+                authors: "Ramachandran, M.",
+                venue: "Big Data Analytics, Springer",
+                year: 2021
+            }
+        ],
+        
+        // ==================== CONFERENCE PAPERS ====================
+        conferences: [
+            // --- ADD NEW CONFERENCES HERE ---
+            {
+                title: "AI and Blockchain for Global EHR Systems",
+                authors: "Ramachandran, M.",
+                venue: "Global Blockchain Healthcare Symposium, Dubai [Keynote]",
+                year: 2024,
+                isNew: true
+            },
+            {
+                title: "AI Ethics By Design for Generative AI",
+                authors: "Ramachandran, M.",
+                venue: "Data Science Conference Adria, Zagreb [Keynote]",
+                year: 2023
+            },
+            {
+                title: "AI Ethics and AI Quality By Design",
+                authors: "Ramachandran, M.",
+                venue: "Data Science Conference, Belgrade [Keynote]",
+                year: 2022
+            },
+            {
+                title: "Software Security Requirements Engineering",
+                authors: "Ramachandran, M.",
+                venue: "ICGS3, London [Keynote]",
+                year: 2015
+            },
+            {
+                title: "Cloud Computing and Big Data Analytics",
+                authors: "Ramachandran, M.",
+                venue: "COMPLEXIS, Rome [Keynote]",
+                year: 2016
+            }
+        ]
+    };
+
+    // ============================================================
+    // RENDERING CODE - No need to modify this section
+    // ============================================================
+    
+    function renderPublications(filter = 'all') {
+        const container = document.getElementById('publications-container');
+        container.innerHTML = '';
+        
+        const categories = [
+            { key: 'books', title: 'Books', type: 'book' },
+            { key: 'journals', title: 'Journal Articles', type: 'journal' },
+            { key: 'chapters', title: 'Book Chapters', type: 'chapter' },
+            { key: 'conferences', title: 'Conference Papers', type: 'conference' }
+        ];
+        
+        categories.forEach(cat => {
+            let pubs = publications[cat.key];
+            
+            // Apply filters
+            if (filter !== 'all') {
+                if (['book', 'journal', 'chapter', 'conference'].includes(filter)) {
+                    if (cat.type !== filter) return;
+                } else if (!isNaN(filter)) {
+                    pubs = pubs.filter(p => p.year == filter);
+                    if (pubs.length === 0) return;
+                }
+            }
+            
+            if (pubs.length === 0) return;
+            
+            const section = document.createElement('div');
+            section.className = 'section';
+            section.innerHTML = `<h2>${cat.title} <span>${pubs.length} items</span></h2>`;
+            
+            pubs.forEach(pub => {
+                const pubDiv = document.createElement('div');
+                pubDiv.className = `publication ${pub.isNew ? 'new' : ''}`;
+                pubDiv.innerHTML = `
+                    <div class="pub-title">${pub.title}</div>
+                    <div class="pub-authors">${pub.authors}</div>
+                    <div class="pub-venue">${pub.venue}</div>
+                    <span class="pub-year">${pub.year}</span>
+                    <span class="pub-type">${cat.type}</span>
+                `;
+                section.appendChild(pubDiv);
+            });
+            
+            container.appendChild(section);
+        });
+    }
+    
+    // Filter button handling
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            renderPublications(this.dataset.filter);
+        });
+    });
+    
+    // Update counts
+    function updateCounts() {
+        document.getElementById('book-count').textContent = publications.books.length;
+        document.getElementById('journal-count').textContent = publications.journals.length + '+';
+        document.getElementById('chapter-count').textContent = publications.chapters.length + '+';
+        document.getElementById('conf-count').textContent = publications.conferences.length + '+';
+    }
+    
+    // Set last updated date
+    document.getElementById('last-updated').textContent = new Date().toLocaleDateString('en-GB', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+    });
+    
+    // Initial render
+    renderPublications();
+    updateCounts();
+    </script>
+</body>
+</html>
