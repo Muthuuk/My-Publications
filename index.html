@@ -13,6 +13,9 @@
             --light-bg: #EBF5FB;
             --text: #2C3E50;
             --border: #BDC3C7;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --info: #3498db;
         }
         
         * {
@@ -207,6 +210,36 @@
             margin-left: 5px;
         }
         
+        .pub-status {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            margin-top: 8px;
+            margin-left: 5px;
+            font-weight: 600;
+        }
+        
+        .status-published {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .status-production {
+            background: #f39c12;
+            color: white;
+        }
+        
+        .status-printing {
+            background: #3498db;
+            color: white;
+        }
+        
+        .status-preparation {
+            background: #9b59b6;
+            color: white;
+        }
+        
         footer {
             text-align: center;
             padding: 30px;
@@ -214,26 +247,13 @@
             font-size: 0.9em;
         }
         
-        /* Instructions for developers */
-        .dev-instructions {
-            background: #fff3cd;
-            border: 1px solid #ffc107;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
-            display: none; /* Hidden by default - remove this line to show */
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
         }
         
-        .dev-instructions h3 {
-            color: #856404;
-            margin-bottom: 10px;
-        }
-        
-        .dev-instructions code {
-            background: #f8f9fa;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: monospace;
+        footer a:hover {
+            text-decoration: underline;
         }
         
         @media (max-width: 768px) {
@@ -254,43 +274,38 @@
         <header>
             <h1>Professor Muthu Ramachandran</h1>
             <p>Distinguished Visiting Professor | Research Consultant | International Academic Leader</p>
-            <div class="credentials">PhD, FBCS, SFHEA, SMIEEE, SMACM</div>
+            <div class="credentials">PhD, FBCS, SFHEA, SMIEEE, SMACM, Fellow IoA</div>
             <div class="stats-bar">
                 <div class="stat">
-                    <div class="stat-number" id="book-count">16</div>
-                    <div class="stat-label">Books</div>
+                    <div class="stat-number">9</div>
+                    <div class="stat-label">Authored Books</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-number" id="journal-count">52+</div>
-                    <div class="stat-label">Journals</div>
+                    <div class="stat-number">14</div>
+                    <div class="stat-label">Edited Books</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-number" id="chapter-count">47</div>
+                    <div class="stat-number">63+</div>
+                    <div class="stat-label">Journal Articles</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">47+</div>
                     <div class="stat-label">Book Chapters</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-number" id="conf-count">100+</div>
+                    <div class="stat-number">100+</div>
                     <div class="stat-label">Conferences</div>
                 </div>
             </div>
         </header>
 
-        <!-- Developer Instructions - Uncomment to show -->
-        <!--
-        <div class="dev-instructions" style="display:block;">
-            <h3>📝 How to Add New Publications</h3>
-            <p>Simply add a new object to the appropriate array in the <code>publications</code> object below:</p>
-            <ol>
-                <li>Find the <code>&lt;script&gt;</code> section at the bottom of this file</li>
-                <li>Locate the array for your publication type (books, journals, chapters, or conferences)</li>
-                <li>Add a new entry following the format shown</li>
-                <li>Add <code>isNew: true</code> to highlight recent additions</li>
-            </ol>
-        </div>
-        -->
-
         <div class="filter-bar">
             <h3>Filter Publications</h3>
+            <p style="font-size: 0.9em; color: #666; margin-bottom: 15px;">
+                📌 <strong>Selected highlights shown below.</strong> For complete publication list, see 
+                <a href="https://scholar.google.co.uk/citations?user=da3DCg4AAAAJ" target="_blank">Google Scholar</a> or 
+                <a href="https://www.igi-global.com/affiliate/muthu-ramachandran/1687" target="_blank">IGI Global Author Page</a>.
+            </p>
             <div class="filter-buttons">
                 <button class="filter-btn active" data-filter="all">All Publications</button>
                 <button class="filter-btn" data-filter="book">Books</button>
@@ -308,126 +323,220 @@
         </div>
 
         <footer>
-            <p>© 2025 Professor Muthu Ramachandran | University of South Africa & Forti5 Tech Ltd</p>
+            <p>© 2026 Professor Muthu Ramachandran | University of South Africa & Forti5 Tech Ltd</p>
             <p>Last updated: <span id="last-updated"></span></p>
+            <p style="margin-top: 10px;">
+                <a href="https://scholar.google.co.uk/citations?user=da3DCg4AAAAJ" target="_blank">Google Scholar</a> | 
+                <a href="https://linkedin.com/in/muthuuk" target="_blank">LinkedIn</a> | 
+                <a href="https://orcid.org/0000-0002-5303-3100" target="_blank">ORCID</a>
+            </p>
         </footer>
     </div>
 
     <script>
     // ============================================================
-    // PUBLICATIONS DATA - EASY TO UPDATE!
-    // ============================================================
-    // To add a new publication:
-    // 1. Find the appropriate category (books, journals, chapters, conferences)
-    // 2. Add a new object with: title, authors, venue, year
-    // 3. Add isNew: true to highlight it as new
+    // PUBLICATIONS DATA - UPDATED FEBRUARY 2026
     // ============================================================
     
     const publications = {
         
-        // ==================== BOOKS ====================
+        // ==================== BOOKS (9 Total) ====================
         books: [
-            // --- ADD NEW BOOKS HERE ---
+            // --- IN PREPARATION (2027) ---
             {
-                title: "Engineering AI Ethics by Design",
+                title: "Guide to AI for Software Engineering Productivity and Quality",
                 authors: "Ramachandran, M.",
-                venue: "Springer [In Preparation]",
-                year: 2025,
+                venue: "Springer",
+                year: 2027,
+                status: "In Preparation",
                 isNew: true
             },
             {
+                title: "Guide to AI Enterprise Security",
+                authors: "Ramachandran, M.",
+                venue: "Springer",
+                year: 2027,
+                status: "In Preparation",
+                isNew: true
+            },
+            // --- IN PRODUCTION (2026) ---
+            {
+                title: "AI for Cybersecurity: Emerging Technologies, Ethics, and Societal Impact",
+                authors: "Ramachandran, M.",
+                venue: "Springer",
+                year: 2026,
+                status: "In Production",
+                isNew: true
+            },
+            {
+                title: "AI for Cybersecurity: Principles, Frameworks, and Practical Implementation",
+                authors: "Ramachandran, M.",
+                venue: "Springer",
+                year: 2026,
+                status: "In Production",
+                isNew: true
+            },
+            // --- IN PRINTING (2026) ---
+            {
                 title: "Engineering Ethics of Blockchain by Design",
                 authors: "Ramachandran, M.",
-                venue: "Springer [In Preparation]",
+                venue: "Elsevier",
+                year: 2026,
+                status: "In Printing",
+                isNew: true
+            },
+            // --- PUBLISHED ---
+            {
+                title: "Engineering AI Ethics by Design",
+                authors: "Ramachandran, M.",
+                venue: "Springer",
                 year: 2025,
+                status: "Published",
+                link: "https://link.springer.com/book/9789819529087",
                 isNew: true
             },
             {
                 title: "Blockchain Software Engineering for Healthcare Applications",
                 authors: "Ramachandran, M.",
-                venue: "Springer [In Production]",
+                venue: "Springer",
                 year: 2025,
+                status: "Published",
+                link: "https://link.springer.com/book/9789819643592",
                 isNew: true
-            },
-            {
-                title: "The Convergence of AI and 6G Communication Networks",
-                authors: "Ramachandran, M. et al.",
-                venue: "Elsevier",
-                year: 2024
-            },
-            {
-                title: "Novel AI and Data Science Advancements for COVID-19",
-                authors: "Chang, V. & Ramachandran, M.",
-                venue: "Elsevier",
-                year: 2022
-            },
-            {
-                title: "Software Engineering in the Era of Cloud Computing",
-                authors: "Ramachandran, M. & Mahmood, Z.",
-                venue: "Springer",
-                year: 2020
-            },
-            {
-                title: "Enterprise Security",
-                authors: "Ramachandran, M.",
-                venue: "Springer",
-                year: 2017
             },
             {
                 title: "Software Security Engineering: Design and Applications",
                 authors: "Ramachandran, M.",
                 venue: "Nova Science Publishers",
-                year: 2012
+                year: 2012,
+                status: "Published"
             },
             {
                 title: "Software Components: Guidelines and Applications",
                 authors: "Ramachandran, M.",
                 venue: "Nova Science Publishers",
-                year: 2008
+                year: 2008,
+                status: "Published"
+            }
+        ],
+        
+        // ==================== EDITED BOOKS (12+) ====================
+        editedBooks: [
+            {
+                title: "The Convergence of AI and 6G Communication Networks",
+                authors: "Ramachandran, M. et al. (Eds)",
+                venue: "Elsevier",
+                year: 2025,
+                status: "Published",
+                isNew: true
+            },
+            {
+                title: "Research Anthology on Blockchain, IoT, and Security",
+                authors: "Ramachandran, M. (Ed)",
+                venue: "IGI Global",
+                year: 2023,
+                status: "Published"
+            },
+            {
+                title: "Novel AI and Data Science Advancements for COVID-19",
+                authors: "Chang, V. & Ramachandran, M. (Eds)",
+                venue: "Elsevier",
+                year: 2022,
+                status: "Published"
+            },
+            {
+                title: "Modern Industrial IoT, Big Data and Supply Chain",
+                authors: "Chang, V., Ramachandran, M. & Munoz, V.M. (Eds)",
+                venue: "Springer",
+                year: 2021,
+                status: "Published"
+            },
+            {
+                title: "Software Engineering in the Era of Cloud Computing",
+                authors: "Ramachandran, M. & Mahmood, Z. (Eds)",
+                venue: "Springer",
+                year: 2020,
+                status: "Published"
+            },
+            {
+                title: "Enterprise Security",
+                authors: "Ramachandran, M. et al. (Eds)",
+                venue: "Springer",
+                year: 2017,
+                status: "Published"
+            },
+            {
+                title: "Requirements Engineering for Service and Cloud Computing",
+                authors: "Ramachandran, M. & Mahmood, Z. (Eds)",
+                venue: "Springer",
+                year: 2017,
+                status: "Published"
+            },
+            {
+                title: "Emerging Trends and Applications of the Internet of Things",
+                authors: "Ramachandran, M. et al. (Eds)",
+                venue: "IGI Global",
+                year: 2017,
+                status: "Published"
             }
         ],
         
         // ==================== JOURNAL ARTICLES ====================
         journals: [
-            // --- ADD NEW JOURNALS HERE ---
             {
-                title: "Ethics of Blockchain by Design for Healthcare Innovation",
+                title: "Five Ways Ethical Thinking is Shaping the Systems Around Us",
                 authors: "Ramachandran, M.",
-                venue: "Blockchain in Healthcare Today (BHTY)",
+                venue: "BCS ITNoW",
                 year: 2025,
                 isNew: true
             },
             {
-                title: "IoT Security Challenges and Solutions Framework",
-                authors: "Ramachandran, M. et al.",
-                venue: "IEEE IoT Journal",
-                year: 2024,
+                title: "AI Agents in Healthcare: The Need for Governance",
+                authors: "Chaffer, T.J. & Ramachandran, M.",
+                venue: "Telehealth and Medicine Today",
+                year: 2025,
                 isNew: true
             },
             {
-                title: "AI and Blockchain Framework for Healthcare Applications",
+                title: "Rich Data Versus Quantity of Data in Code Generation AI",
+                authors: "Ramachandran, M. & Fouracre, S.",
+                venue: "Blockchain in Healthcare Today",
+                year: 2025,
+                link: "https://doi.org/10.30953/bhty.v8.396",
+                isNew: true
+            },
+            {
+                title: "Optimizing EEG Feature Selection for Meditation Classification",
+                authors: "Usgaonkar, S.S., Edla, R.D., Dharavath, R. & Ramachandran, M. et al.",
+                venue: "Biomedical Signal Processing and Control, Elsevier",
+                year: 2025,
+                isNew: true
+            },
+            {
+                title: "Harnessing Digital Twins and Industrial-IoT for Mining Automation",
+                authors: "Sreekant, S., Ramachandran, M. & Dharvath, R.",
+                venue: "Computers & Industrial Engineering, Elsevier",
+                year: 2025,
+                isNew: true
+            },
+            {
+                title: "Ethics of Blockchain by Design for Healthcare Innovation",
+                authors: "Ramachandran, M.",
+                venue: "Blockchain in Healthcare Today",
+                year: 2024,
+                link: "https://doi.org/10.30953/bhty.v7.362"
+            },
+            {
+                title: "AI and Blockchain Framework For Healthcare Applications",
                 authors: "Ramachandran, M.",
                 venue: "Facta Universitatis",
-                year: 2024,
-                isNew: true
+                year: 2024
             },
             {
                 title: "S3EF-HBCAs: Secure Software Engineering Framework for Healthcare Blockchain",
-                authors: "Ramachandran, M. et al.",
-                venue: "Blockchain in Healthcare Today (BHTY)",
-                year: 2023
-            },
-            {
-                title: "Quality Framework for XAI and ML Applications",
                 authors: "Ramachandran, M.",
-                venue: "IET Press",
+                venue: "Blockchain in Healthcare Today",
                 year: 2023
-            },
-            {
-                title: "Towards Achieving Quality in AI Applications",
-                authors: "Ramachandran, M.",
-                venue: "Patterns, Elsevier",
-                year: 2022
             },
             {
                 title: "Cloud Data Security with CCAF",
@@ -438,72 +547,69 @@
             {
                 title: "Software Security Requirements Engineering as Cloud Service",
                 authors: "Ramachandran, M.",
-                venue: "International Journal of Information Management",
-                year: 2016
-            },
-            {
-                title: "A Resiliency Framework for Enterprise Cloud",
-                authors: "Chang, V. et al.",
-                venue: "International Journal of Information Management",
-                year: 2015
-            },
-            {
-                title: "Efficient Location Privacy Algorithm for IoT",
-                authors: "Sun, G. et al.",
-                venue: "Elsevier Journal of Network & Computer Applications",
+                venue: "International Journal of Information Management, Elsevier",
                 year: 2016
             }
         ],
         
         // ==================== BOOK CHAPTERS ====================
         chapters: [
-            // --- ADD NEW CHAPTERS HERE ---
             {
-                title: "AI Ethics by Design Methodology",
-                authors: "Ramachandran, M.",
-                venue: "Engineering AI Ethics by Design, Springer",
+                title: "Security System Using Curve-Based Cryptosystem for IoMT",
+                authors: "Kavitha, S., Alphonse, P.J.A. & Ramachandran, M.",
+                venue: "Internet of Medical Things, CRC Press",
                 year: 2025,
                 isNew: true
             },
             {
-                title: "Blockchain Ethics Framework for Healthcare",
+                title: "Energy Efficiency Sustainability Framework for Cloud and Quantum Data Centres",
                 authors: "Ramachandran, M.",
-                venue: "Blockchain for Healthcare, Springer",
-                year: 2024,
-                isNew: true
+                venue: "AI and 6G Communication Networks, Elsevier",
+                year: 2024
             },
             {
-                title: "Cloud Security Architecture Patterns",
+                title: "Quality Framework for Explainable AI (XAI) and ML Applications",
                 authors: "Ramachandran, M.",
-                venue: "Cloud Computing Handbook, Springer",
-                year: 2023
+                venue: "Explainable AI Concepts, IET Press",
+                year: 2024
             },
             {
-                title: "Software Engineering for IoT Systems",
+                title: "SEF4CPSIoT: Software Engineering Framework for Cyber-Physical and IoT Systems",
                 authors: "Ramachandran, M.",
-                venue: "IoT Handbook, Elsevier",
+                venue: "Research Anthology on Blockchain, IoT, and Security, IGI Global",
                 year: 2022
             },
             {
-                title: "Big Data Quality and Governance",
+                title: "Enterprise Security Framework for Cloud Data Centres",
                 authors: "Ramachandran, M.",
-                venue: "Big Data Analytics, Springer",
-                year: 2021
+                venue: "Cloud Security, IGI Global",
+                year: 2020
             }
         ],
         
-        // ==================== CONFERENCE PAPERS ====================
+        // ==================== CONFERENCE PAPERS & KEYNOTES ====================
         conferences: [
-            // --- ADD NEW CONFERENCES HERE ---
             {
-                title: "AI and Blockchain for Global EHR Systems",
-                authors: "Ramachandran, M.",
-                venue: "Global Blockchain Healthcare Symposium, Dubai [Keynote]",
-                year: 2024,
+                title: "Legata - A Domain Language for Maritime Regulatory Compliance",
+                authors: "Sreedharan, S. & Ramachandran, M.",
+                venue: "4th ACM Symposium on Computer Science and Law, Munich",
+                year: 2025,
                 isNew: true
             },
             {
-                title: "AI Ethics By Design for Generative AI",
+                title: "Safety Assurances in Autonomous Vessels",
+                authors: "Sreedharan, S., Ramachandran, M. et al.",
+                venue: "ER 2024: 43rd Intl. Conf. on Conceptual Modeling, Pittsburgh",
+                year: 2024
+            },
+            {
+                title: "AI and Blockchain for Global Electronic Health Record",
+                authors: "Ramachandran, M.",
+                venue: "Global Blockchain Healthcare Symposium, Dubai [Keynote]",
+                year: 2024
+            },
+            {
+                title: "AI Ethics By Design for Generative AI Models",
                 authors: "Ramachandran, M.",
                 venue: "Data Science Conference Adria, Zagreb [Keynote]",
                 year: 2023
@@ -513,39 +619,39 @@
                 authors: "Ramachandran, M.",
                 venue: "Data Science Conference, Belgrade [Keynote]",
                 year: 2022
-            },
-            {
-                title: "Software Security Requirements Engineering",
-                authors: "Ramachandran, M.",
-                venue: "ICGS3, London [Keynote]",
-                year: 2015
-            },
-            {
-                title: "Cloud Computing and Big Data Analytics",
-                authors: "Ramachandran, M.",
-                venue: "COMPLEXIS, Rome [Keynote]",
-                year: 2016
             }
         ]
     };
 
     // ============================================================
-    // RENDERING CODE - No need to modify this section
+    // RENDERING CODE
     // ============================================================
+    
+    function getStatusClass(status) {
+        switch(status) {
+            case 'Published': return 'status-published';
+            case 'In Production': return 'status-production';
+            case 'In Printing': return 'status-printing';
+            case 'In Preparation': return 'status-preparation';
+            default: return '';
+        }
+    }
     
     function renderPublications(filter = 'all') {
         const container = document.getElementById('publications-container');
         container.innerHTML = '';
         
         const categories = [
-            { key: 'books', title: 'Books', type: 'book' },
+            { key: 'books', title: 'Authored Books', type: 'book' },
+            { key: 'editedBooks', title: 'Edited Books', type: 'book' },
             { key: 'journals', title: 'Journal Articles', type: 'journal' },
             { key: 'chapters', title: 'Book Chapters', type: 'chapter' },
-            { key: 'conferences', title: 'Conference Papers', type: 'conference' }
+            { key: 'conferences', title: 'Conference Papers & Keynotes', type: 'conference' }
         ];
         
         categories.forEach(cat => {
             let pubs = publications[cat.key];
+            if (!pubs) return;
             
             // Apply filters
             if (filter !== 'all') {
@@ -566,12 +672,24 @@
             pubs.forEach(pub => {
                 const pubDiv = document.createElement('div');
                 pubDiv.className = `publication ${pub.isNew ? 'new' : ''}`;
+                
+                let statusHtml = '';
+                if (pub.status) {
+                    statusHtml = `<span class="pub-status ${getStatusClass(pub.status)}">${pub.status}</span>`;
+                }
+                
+                let titleHtml = pub.title;
+                if (pub.link) {
+                    titleHtml = `<a href="${pub.link}" target="_blank" style="color: inherit; text-decoration: none;">${pub.title} 🔗</a>`;
+                }
+                
                 pubDiv.innerHTML = `
-                    <div class="pub-title">${pub.title}</div>
+                    <div class="pub-title">${titleHtml}</div>
                     <div class="pub-authors">${pub.authors}</div>
                     <div class="pub-venue">${pub.venue}</div>
                     <span class="pub-year">${pub.year}</span>
                     <span class="pub-type">${cat.type}</span>
+                    ${statusHtml}
                 `;
                 section.appendChild(pubDiv);
             });
@@ -589,14 +707,6 @@
         });
     });
     
-    // Update counts
-    function updateCounts() {
-        document.getElementById('book-count').textContent = publications.books.length;
-        document.getElementById('journal-count').textContent = publications.journals.length + '+';
-        document.getElementById('chapter-count').textContent = publications.chapters.length + '+';
-        document.getElementById('conf-count').textContent = publications.conferences.length + '+';
-    }
-    
     // Set last updated date
     document.getElementById('last-updated').textContent = new Date().toLocaleDateString('en-GB', {
         day: 'numeric',
@@ -606,7 +716,6 @@
     
     // Initial render
     renderPublications();
-    updateCounts();
     </script>
 </body>
 </html>
